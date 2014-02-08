@@ -4,9 +4,11 @@ using System.Data.Linq;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Web;
+using System.Web.Mvc;
 
 namespace NerdDinner.Models
 {
+    [Bind(Include="Title,Description,EventDate,Address,Country,ContactPhone,Latitude,Longitude")]
     public partial class Dinner
     {
         public bool IsValid
@@ -76,5 +78,18 @@ namespace NerdDinner.Models
         }
     }
 
+    public partial class Dinner
+    {
+        public bool IsHostedBy(string userName)
+        {
+            return HostedBy.Equals(userName,
+            StringComparison.InvariantCultureIgnoreCase);
+        }
 
+        public bool IsUserRegistered(string userName)
+        {
+            return RSVPs.Any(r => r.AttendeeName.Equals(userName,
+            StringComparison.InvariantCultureIgnoreCase));
+        }
+    }
 }
