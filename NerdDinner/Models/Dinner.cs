@@ -40,7 +40,22 @@ namespace NerdDinner.Models
             if (!IsValid)
                 throw new ApplicationException("Rule violations prevent saving");
         }
+
+        public bool IsHostedBy(string userName)
+        {
+            return HostedBy.Equals(userName,
+            StringComparison.InvariantCultureIgnoreCase);
+        }
+
+        public bool IsUserRegistered(string userName)
+        {
+            return RSVPs.Any(r => r.AttendeeName.Equals(userName,
+            StringComparison.InvariantCultureIgnoreCase));
+        }
     }
+
+
+
 
     public class RuleViolation
     {
@@ -75,21 +90,6 @@ namespace NerdDinner.Models
             get {
                 return countryRegex.Keys;
                 }
-        }
-    }
-
-    public partial class Dinner
-    {
-        public bool IsHostedBy(string userName)
-        {
-            return HostedBy.Equals(userName,
-            StringComparison.InvariantCultureIgnoreCase);
-        }
-
-        public bool IsUserRegistered(string userName)
-        {
-            return RSVPs.Any(r => r.AttendeeName.Equals(userName,
-            StringComparison.InvariantCultureIgnoreCase));
         }
     }
 }

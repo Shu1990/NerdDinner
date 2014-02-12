@@ -23,6 +23,8 @@ namespace NerdDinner
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             AuthConfig.RegisterAuth();
+
+            HtmlHelper.UnobtrusiveJavaScriptEnabled = false;
         }
     }
 }

@@ -23,4 +23,18 @@
       <Association Name="Dinner_RSVP" Member="RSVPs" ThisKey="DinnerID" OtherKey="DinnerID" Type="RSVP" />
     </Type>
   </Table>
+  <Function Name="dbo.DistanceBetween" Method="DistanceBetween" IsComposable="true">
+    <Parameter Name="Lat1" Parameter="lat1" Type="System.Single" DbType="Real" />
+    <Parameter Name="Long1" Parameter="long1" Type="System.Single" DbType="Real" />
+    <Parameter Name="Lat2" Parameter="lat2" Type="System.Single" DbType="Real" />
+    <Parameter Name="Long2" Parameter="long2" Type="System.Single" DbType="Real" />
+    <Return Type="System.Single" />
+  </Function>
+  <Function Name="dbo.NearestDinners" Method="NearestDinners" IsComposable="true">
+    <Parameter Name="lat" Type="System.Single" DbType="Real" />
+    <Parameter Name="long" Type="System.Single" DbType="Real" />
+    <ElementType Name="NearestDinnersResult">
+      <Column Name="DinnerID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
 </Database>

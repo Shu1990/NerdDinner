@@ -9,13 +9,24 @@ namespace NerdDinner.Controllers
 {
     public class DinnersController : Controller
     {
-        private DinnerRepository dinnerRepository = new DinnerRepository();
+        private const int ListingsPerPage = 10;
+
+        IDinnerRepository dinnerRepository;
+
+        public DinnersController()
+            : this(new DinnerRepository()) {
+        }
+
+        public DinnersController(IDinnerRepository repository)
+        {
+            dinnerRepository = repository;
+        }
 
         //
         // GET: /Dinners/
         public ActionResult Index(int? page)
         {
-            const int pageSize = 1;
+            const int pageSize = ListingsPerPage;
 
             var upcomingDinners = dinnerRepository.FindUpcomingDinners();
             var paginatedDinners = new PaginatedList<Dinner>(upcomingDinners,
@@ -48,9 +59,7 @@ namespace NerdDinner.Controllers
             if (!dinner.IsHostedBy(User.Identity.Name))
                 return View("InvalidOwner");
 
-            ViewData["Countries"] = new SelectList(PhoneValidator.Countries,dinner.Country);
-
-            return View(dinner);
+            return View(new DinnerFormViewModel(dinner));
         }
 
         //
@@ -75,7 +84,7 @@ namespace NerdDinner.Controllers
 
                 ViewData["countries"] = new SelectList(PhoneValidator.Countries,dinner.Country);
 
-                return View(dinner);
+                return View(new DinnerFormViewModel(dinner));
             }
         }
 
@@ -90,9 +99,7 @@ namespace NerdDinner.Controllers
                 EventDate = DateTime.Now.AddDays(7)
             };
 
-            ViewData["Countries"] = new SelectList(PhoneValidator.Countries, dinner.Country);
-
-            return View(dinner);
+            return View(new DinnerFormViewModel(dinner));
         }
 
         //
@@ -114,11 +121,10 @@ namespace NerdDinner.Controllers
                 }
                 catch
                 {
-                    ModelState.AddRuleViolations(dinner.GetRuleViolations());
-                    ViewData["Countries"] = new SelectList(PhoneValidator.Countries, dinner.Country);
+                    ModelState.AddRuleViolations(dinner.GetRuleViolations());                    
                 }
             }
-            return View(dinner);
+            return View(new DinnerFormViewModel(dinner));
         }
 
         //

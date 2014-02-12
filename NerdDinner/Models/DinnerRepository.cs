@@ -7,7 +7,7 @@ using NerdDinner.Models;
 
 namespace NerdDinner.Models
 {
-    public class DinnerRepository
+    public class DinnerRepository : IDinnerRepository
     {
         private NerdDinnerDataContext db = new NerdDinnerDataContext();
 
@@ -25,6 +25,16 @@ namespace NerdDinner.Models
                    orderby dinner.EventDate
                    select dinner;
         }
+
+        public IQueryable<Dinner> FindByLocation(float latitude, float longitude)
+        {
+            var dinners = from dinner in FindUpcomingDinners()
+                          join i in db.NearestDinners(latitude, longitude)
+                          on dinner.DinnerID equals i.DinnerID
+                          select dinner;
+            return dinners;
+        }
+
 
         public Dinner GetDinner(int id)
         {

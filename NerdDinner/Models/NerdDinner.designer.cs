@@ -83,6 +83,18 @@ namespace NerdDinner.Models
 				return this.GetTable<Dinner>();
 			}
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.DistanceBetween", IsComposable=true)]
+		public System.Nullable<float> DistanceBetween([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Lat1", DbType="Real")] System.Nullable<float> lat1, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Long1", DbType="Real")] System.Nullable<float> long1, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Lat2", DbType="Real")] System.Nullable<float> lat2, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Long2", DbType="Real")] System.Nullable<float> long2)
+		{
+			return ((System.Nullable<float>)(this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), lat1, long1, lat2, long2).ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.NearestDinners", IsComposable=true)]
+		public IQueryable<NearestDinnersResult> NearestDinners([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Real")] System.Nullable<float> lat, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="long", DbType="Real")] System.Nullable<float> @long)
+		{
+			return this.CreateMethodCallQuery<NearestDinnersResult>(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), lat, @long);
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.RSVP")]
@@ -235,8 +247,9 @@ namespace NerdDinner.Models
 			}
 		}
 	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Dinners")]
+
+    
+    [global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Dinners")]
 	public partial class Dinner : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
@@ -539,6 +552,32 @@ namespace NerdDinner.Models
 		{
 			this.SendPropertyChanging();
 			entity.Dinner = null;
+		}
+	}
+	
+	public partial class NearestDinnersResult
+	{
+		
+		private int _DinnerID;
+		
+		public NearestDinnersResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DinnerID", DbType="Int NOT NULL")]
+		public int DinnerID
+		{
+			get
+			{
+				return this._DinnerID;
+			}
+			set
+			{
+				if ((this._DinnerID != value))
+				{
+					this._DinnerID = value;
+				}
+			}
 		}
 	}
 }
