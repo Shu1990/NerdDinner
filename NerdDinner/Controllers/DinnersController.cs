@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using NerdDinner.App_Start;
 using NerdDinner.Models;
+using Ninject;
+
 
 namespace NerdDinner.Controllers
 {
@@ -12,10 +15,6 @@ namespace NerdDinner.Controllers
         private const int ListingsPerPage = 10;
 
         IDinnerRepository dinnerRepository;
-
-        public DinnersController()
-            : this(new DinnerRepository()) {
-        }
 
         public DinnersController(IDinnerRepository repository)
         {

@@ -24,6 +24,7 @@ namespace NerdDinner
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             AuthConfig.RegisterAuth();
 
+
             HtmlHelper.UnobtrusiveJavaScriptEnabled = false;
         }
     }

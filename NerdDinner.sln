@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NerdDinner", "NerdDinner\Ne
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NerdDinner.Tests", "NerdDinner.Tests\NerdDinner.Tests.csproj", "{C0263E16-6BF0-47CC-85C4-31B3765CEE17}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NerdDinner.specs", "NerdDinner.specs\NerdDinner.specs.csproj", "{C03F6B64-CAE6-4A4E-B0EF-96784CE31865}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,6 +21,10 @@ Global
 		{C0263E16-6BF0-47CC-85C4-31B3765CEE17}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C0263E16-6BF0-47CC-85C4-31B3765CEE17}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C0263E16-6BF0-47CC-85C4-31B3765CEE17}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C03F6B64-CAE6-4A4E-B0EF-96784CE31865}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C03F6B64-CAE6-4A4E-B0EF-96784CE31865}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C03F6B64-CAE6-4A4E-B0EF-96784CE31865}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C03F6B64-CAE6-4A4E-B0EF-96784CE31865}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
